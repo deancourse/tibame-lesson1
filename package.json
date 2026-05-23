@@ -1,0 +1,42 @@
+{
+  "name": "tibame-lesson1",
+  "version": "1.0.0",
+  "description": "多 Skill 整合的 AI 教學內容工作坊：以 Claude/Codex Agent Skills 自動把講稿/音檔轉成課程網頁、企業內訓提案 PDF、影片字幕與字卡、社群文案。",
+  "type": "commonjs",
+  "scripts": {
+    "build": "node .agents/skills/course-page-generator/scripts/build.mjs",
+    "build:course": "node .agents/skills/course-page-generator/scripts/build.mjs course",
+    "dev": "node .agents/skills/course-page-generator/scripts/dev.mjs",
+    "dev:course": "node .agents/skills/course-page-generator/scripts/dev.mjs course",
+    "og": "node .agents/skills/course-page-generator/scripts/generate-og.mjs",
+    "og:course": "node .agents/skills/course-page-generator/scripts/generate-og.mjs course",
+    "proposal": "node .agents/skills/proposal-writer/scripts/build-pdf.mjs"
+  },
+  "keywords": [
+    "agent-skills",
+    "claude-code",
+    "codex",
+    "course-generator",
+    "markdown-to-html",
+    "proposal",
+    "srt",
+    "open-graph",
+    "puppeteer"
+  ],
+  "author": "dean (工程師下班有約)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deancourse/tibame-lesson1.git"
+  },
+  "bugs": {
+    "url": "https://github.com/deancourse/tibame-lesson1/issues"
+  },
+  "homepage": "https://github.com/deancourse/tibame-lesson1#readme",
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "puppeteer": "^24.39.1"
+  }
+}

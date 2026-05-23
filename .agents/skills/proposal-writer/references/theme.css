@@ -1,0 +1,192 @@
+/* ============================================================
+   proposal-writer — 提案 PDF 樣式（商務雅緻）
+   品牌色由 build-pdf.mjs 注入：:root { --accent }
+   美化／改版型只需編輯本檔，不需動 build-pdf.mjs。
+   ============================================================ */
+
+:root {
+  --ink: #1f2937;
+  --ink-soft: #4b5563;
+  --ink-strong: #111827;
+  --hair: #e7e9ee;
+  --accent-tint: color-mix(in srgb, var(--accent) 9%, #fff);
+  --accent-ring: color-mix(in srgb, var(--accent) 34%, #fff);
+  --accent-deep: color-mix(in srgb, var(--accent) 64%, #000);
+  --highlight: #FDE68A;   /* 粗體的螢光筆色（柔和琥珀黃，與藍色版面冷暖對比）*/
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.75;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+p { margin: 6px 0; orphans: 2; widows: 2; }
+strong {
+  font-weight: 700; color: var(--ink-strong);
+  /* 螢光筆效果：只填字的下半段，像馬克筆劃過 */
+  background: linear-gradient(transparent 45%, var(--highlight) 45%);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+em { font-style: italic; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-ring); }
+code {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  background: #f3f4f6; padding: 1px 5px; border-radius: 4px; font-size: 12px;
+}
+
+/* ── 頁首 ─────────────────────────────────────── */
+.doc-head {
+  border-top: 3px solid var(--accent);
+  border-bottom: 1.5px solid var(--accent);
+  padding: 13px 0 15px;
+  margin-bottom: 6px;
+}
+.kicker {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  color: var(--accent); margin-bottom: 6px;
+}
+.kicker::before {
+  content: ""; display: inline-block;
+  width: 4px; height: 12px; background: var(--accent);
+  margin-right: 7px; vertical-align: -1px; border-radius: 1px;
+}
+.doc-title { font-size: 25px; font-weight: 800; color: var(--ink-strong); letter-spacing: .3px; }
+.doc-meta { margin-top: 9px; font-size: 13.5px; font-weight: 700; color: #6b7280; }
+
+/* ── 區塊標題 h2（漸層長條）──────────────────── */
+h2 {
+  display: flex; align-items: center;
+  margin: 26px 0 13px;
+  padding: 10px 16px;
+  border-radius: 7px;
+  background: linear-gradient(100deg, var(--accent) 0%, var(--accent-deep) 100%);
+  color: #fff;
+  font-size: 15px; font-weight: 800; letter-spacing: .4px;
+  break-after: avoid;
+}
+main > h2:first-of-type { margin-top: 16px; }
+h2 strong { color: #fff; background: none; }
+.h2-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; margin-right: 11px; flex: none;
+  background: #fff; color: var(--accent);
+  font-size: 12px; font-weight: 800; border-radius: 50%;
+}
+
+/* ── 課程簡介 lead ────────────────────────────── */
+p.lead { color: var(--ink-soft); line-height: 1.9; }
+
+/* ── 一般清單 ─────────────────────────────────── */
+ul, ol { margin: 6px 0 6px 22px; }
+li { margin: 3px 0; break-inside: avoid; }
+
+/* ── 使用工具：對齊式規格清單 ─────────────────── */
+ul.tool-list { list-style: none; margin: 9px 0 0 14px; }
+ul.tool-list li {
+  display: flex; align-items: baseline; gap: 14px;
+  margin: 0; padding: 9px 3px;
+  border-bottom: 1px solid var(--hair);
+}
+ul.tool-list li:last-child { border-bottom: 0; }
+.tool-tag {
+  flex: none; min-width: 124px; text-align: center;
+  background: var(--accent-tint); color: var(--accent);
+  font-size: 11.5px; font-weight: 700; letter-spacing: .2px;
+  padding: 4px 11px; border-radius: 6px;
+}
+.tool-desc { color: var(--ink-soft); }
+
+/* ── 預計成效 / 適合對象：勾選清單 ────────────── */
+ul.check-list { list-style: none; margin: 9px 0 0 14px; }
+ul.check-list li {
+  position: relative; padding: 5px 0 5px 29px; margin: 2px 0;
+}
+ul.check-list li::before {
+  content: "✓"; position: absolute; left: 0; top: 7px;
+  width: 18px; height: 18px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent-tint); color: var(--accent);
+  border: 1px solid var(--accent-ring);
+  font-size: 11px; font-weight: 800; line-height: 1; border-radius: 50%;
+}
+
+/* ── 課程目錄：編號清單 ──────────────────────── */
+ol.toc-list { list-style: none; margin: 9px 0 0 14px; counter-reset: toc; }
+ol.toc-list li {
+  counter-increment: toc; position: relative;
+  padding: 5px 0 5px 30px; margin: 2px 0;
+}
+ol.toc-list li::before {
+  content: counter(toc); position: absolute; left: 0; top: 6px;
+  width: 20px; height: 20px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1.5px solid var(--accent); color: var(--accent);
+  font-size: 11px; font-weight: 700; line-height: 1; border-radius: 50%;
+}
+
+/* ── 場次分隔帶（多場次課程的課程目錄／課程大綱）── */
+.session-band {
+  margin: 22px 0 13px;
+  padding: 8px 15px;
+  background: var(--accent-tint);
+  border-left: 4px solid var(--accent);
+  border-radius: 5px;
+  color: var(--accent);
+  font-size: 13.5px; font-weight: 800; letter-spacing: .3px;
+  break-after: avoid;
+}
+
+/* ── 課程大綱：章節（整章不跨頁）──────────────── */
+.chapter { break-inside: avoid; margin: 15px 0; }
+.chapter h3 {
+  font-size: 13.5px; font-weight: 800; color: var(--ink-strong);
+  margin: 0 0 7px; padding: 2px 0 2px 11px;
+  border-left: 3px solid var(--accent);
+  break-after: avoid;
+}
+.chapter ul { margin: 6px 0 6px 34px; }
+.chapter ul ul { margin: 3px 0 3px 22px; }
+.chapter li { margin: 4px 0; }
+.chapter ul ul > li { margin: 2px 0; color: var(--ink-soft); }
+
+/* ── 其他標題 ─────────────────────────────────── */
+h3 { font-size: 13.5px; font-weight: 700; color: var(--ink-strong); margin: 13px 0 5px; break-after: avoid; }
+h4 { font-size: 12.5px; font-weight: 700; color: var(--ink-soft); margin: 10px 0 4px; }
+hr { border: 0; border-top: 1px solid var(--hair); margin: 13px 0; }
+
+/* ── 表格 ─────────────────────────────────────── */
+table { border-collapse: collapse; width: 100%; margin: 9px 0; font-size: 12px; break-inside: avoid; }
+th, td { border: 1px solid var(--hair); padding: 6px 9px; text-align: left; vertical-align: top; }
+th { background: #f9fafb; font-weight: 700; color: var(--ink-strong); }
+
+blockquote {
+  margin: 8px 0; padding: 6px 12px;
+  border-left: 3px solid #d1d5db; color: var(--ink-soft); background: #f9fafb;
+}
+
+/* ── 關於講師 ─────────────────────────────────── */
+.instructor {
+  margin-top: 30px; padding: 17px 19px;
+  background: #f9fafb; border: 1px solid var(--hair);
+  border-top: 3px solid var(--accent); border-radius: 8px;
+  break-inside: avoid;
+}
+.ins-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  color: var(--accent); margin-bottom: 8px;
+}
+.ins-name { font-size: 14.5px; font-weight: 800; color: var(--ink-strong); }
+.ins-name span { font-size: 11.5px; font-weight: 500; color: #6b7280; margin-left: 8px; }
+.ins-bio { margin: 8px 0; color: var(--ink-soft); }
+.ins-highlights { list-style: none; margin: 9px 0 0; padding: 0; }
+.ins-highlights li { margin: 3px 0; color: var(--ink-soft); }
+.ins-links { margin-top: 10px; font-size: 12px; color: #9ca3af; }
+.ins-links a { border-bottom: 0; display: inline-flex; align-items: center; gap: 4px; }
+.link-icon { width: 11px; height: 11px; flex: none; }

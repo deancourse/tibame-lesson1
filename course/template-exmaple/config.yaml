@@ -1,0 +1,21 @@
+page:
+  title: "從 Vibe Coding 到 Agent Skill｜打造屬於自己的講義模板"
+  badge: "工作坊 · Vibe Coding 模板實戰"
+  hero_title: "Vibe Coding<br>從免洗變成模板"
+  subtitle: "從一句 Prompt 開始，逆向設計 Markdown 模板，再封裝成 Agent Skill —— 把講義網頁變成可長期維護的工具"
+
+seo:
+  title: "從 Vibe Coding 到 Agent Skill｜打造屬於自己的講義模板"
+  description: "從 Codex 安裝、第一版 HTML 生成，到把 HTML 逆向回 Markdown 模板、封裝成 Agent Skill，並部署到 GitHub Pages，一份能跟著做的 Vibe Coding 模板課。"
+  image: "https://deanlin.net/course/template-exmaple/assets/og-image.jpg"
+  url: "https://deanlin.net/course/template-exmaple/"
+
+quotes:
+  opening:
+    text: "AI 真正的價值，<br>不是幫你省下一次工作的時間，<br>而是幫你把工作流變成可重複使用的模板。"
+  closing:
+    text: >
+      工具會一直換，<br>
+      模板與工作流的設計卻會留下。<br><br>
+      當你開始用系統設計的角度思考 Vibe Coding，<br>
+      AI 的成果才會慢慢脫離 Demo，進入長期可用的狀態。

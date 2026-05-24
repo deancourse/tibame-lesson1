@@ -1,0 +1,21 @@
+page:
+  title: "Claude Code 從零開始｜AI 開發工作流入門"
+  badge: "工作坊 · Claude Code 入門"
+  hero_title: "Claude Code<br>從零開始"
+  subtitle: "從安裝、第一個對話，到 Skills 與 Commands —— 一份能跟著做的 Claude Code 入門課"
+
+seo:
+  title: "Claude Code 從零開始｜AI 開發工作流入門"
+  description: "從安裝、基本對話到 Skills、Commands、MCP 與權限設定，帶你完整走過 Claude Code 的學習路徑。"
+  image: "https://deanlin.net/course/claude-code-from-zero/assets/og-image.jpg"
+  url: "https://deanlin.net/course/claude-code-from-zero/"
+
+quotes:
+  opening:
+    text: "AI 不會取代工程師，<br>但會用 AI 的工程師會取代不會用的。"
+  closing:
+    text: >
+      工具更新得很快，<br>
+      但「把白話交代清楚」這件事不會過時。<br><br>
+      Claude Code 只是入口，<br>
+      真正的差距是你怎麼設計工作流。

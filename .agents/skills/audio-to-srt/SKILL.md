@@ -1,7 +1,7 @@
 ---
 name: Audio to SRT Converter
 description: This skill should be used when the user asks to "convert audio to srt", "generate subtitles from audio", "create srt from mp3/wav/m4a/flac", "transcribe audio to subtitles", or needs to generate SRT subtitle files from audio files (MP3, WAV, M4A, FLAC, etc.) with customizable character limits and timeline adjustments.
-version: 0.2.0
+version: 0.3.0
 ---
 
 # Audio to SRT Converter
@@ -25,11 +25,18 @@ Trigger phrases include "轉成 SRT 字幕", "轉逐字稿", "generate subtitles
 
 - **No Python lock.** The wrapper passes `--python ">=3.9"` to uv. uv prefers an already-installed Python that matches (system Python, Homebrew Python, pyenv, etc.); only downloads a managed CPython if nothing on the machine qualifies.
 - The minimum (`3.9`) is set in `scripts/run.sh` (`PY_MIN`) and is dictated by the Whisper backends.
+- UTF-8 stdio is forced inside both `run.sh` and `audio_to_srt.py`, so the emoji status lines render safely on Windows zh consoles (cp936/cp950).
 - System dependencies (must exist on PATH):
-  - `uv` — install with `brew install uv` (macOS) or `pipx install uv`
-  - `ffmpeg` — install with `brew install ffmpeg`
 
-The wrapper aborts with an actionable error if either is missing.
+| OS | uv | ffmpeg |
+|----|-----|--------|
+| macOS | `brew install uv` | `brew install ffmpeg` |
+| Linux | `pipx install uv` *(or distro pkg)* | `apt install ffmpeg` *(or dnf/pacman/zypper)* |
+| Windows | `winget install astral-sh.uv` *(or `scoop install uv`)* | `winget install Gyan.FFmpeg` *(or `scoop install ffmpeg`)* |
+
+> **Windows note:** `run.sh` is a Bash script — run it from **Git Bash** (bundled with Git for Windows) or WSL. After installing tools via winget, open a fresh shell so PATH refreshes.
+
+The wrapper aborts with an actionable, OS-specific install hint if either tool is missing.
 
 ## Backend Selection
 

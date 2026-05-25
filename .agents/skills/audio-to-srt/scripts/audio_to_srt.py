@@ -15,6 +15,16 @@ import sys
 from datetime import timedelta
 from pathlib import Path
 
+# Force UTF-8 stdio so emoji-laden status lines work on Windows consoles
+# (default cp936/cp950) without crashing.
+for _stream in (sys.stdout, sys.stderr):
+    reconfigure = getattr(_stream, "reconfigure", None)
+    if reconfigure is not None:
+        try:
+            reconfigure(encoding="utf-8")
+        except (OSError, ValueError):
+            pass
+
 
 SUPPORTED_FORMATS = {".mp3", ".wav", ".m4a", ".flac", ".ogg", ".aac", ".wma"}
 
